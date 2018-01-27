@@ -7,6 +7,8 @@ public class WordManager : MonoBehaviour {
 	public delegate void ClickAction();
 	public static event ClickAction NewWord;
 
+	public GUIText WordOutputText;
+
 	public static readonly Dictionary<char, string> MorseCodeKey = new Dictionary<char, string>() {
 		{'a', ".-"},
 		{'b', "-..."},
@@ -89,6 +91,7 @@ public class WordManager : MonoBehaviour {
 		CoolWord word = _unusedWordList[index];
 		_unusedWordList.RemoveAt(index);
 		_currentWord = word;
+		WordOutputText.text = _currentWord.Word;
 
 		if (NewWord != null)
 			NewWord();

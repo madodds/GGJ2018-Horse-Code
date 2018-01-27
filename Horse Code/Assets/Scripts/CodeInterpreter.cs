@@ -32,6 +32,6 @@ public class CodeInterpreter : MonoBehaviour {
 	private void MyEvent()
 	{
 		_currentCharacterIndex = 0;
-
+		//PlayerContols.CurrentInput;
 	}
 }
