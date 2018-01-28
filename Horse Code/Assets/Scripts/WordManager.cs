@@ -497,4 +497,14 @@ public class WordManager : MonoBehaviour {
 
 		public string Trivia;
 	}
+
+	private void OnEnable()
+	{
+		Controls.RestartGame += Reset;
+	}
+
+	private void OnDisable()
+	{
+		Controls.RestartGame -= Reset;
+	}
 }

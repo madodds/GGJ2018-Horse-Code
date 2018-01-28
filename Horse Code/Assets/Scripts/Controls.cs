@@ -20,14 +20,20 @@ public class Controls : MonoBehaviour
     public GameUI UI;
     public Controls OpponentControls;
 
-    public AudioSource Neigh;
-    public AudioSource Strike;
+    public AudioRandomizer Neigh;
+    public AudioRandomizer Strike;
 
     public bool InputDisabled = false;
 
 	public GameObject ExpectedOutput;
 	public GameObject Output;
     public GameObject WinnerScreen;
+
+
+	public delegate void ResetGame();
+	public static event ResetGame RestartGame;
+
+	public float RestartAfterElapsedTime = 5f;
 
 	[HideInInspector]
 	public bool Pressed
@@ -114,19 +120,25 @@ public class Controls : MonoBehaviour
 		ExpectedOutput.GetComponent<Text>().text = _expectedInput.ToString();
 		Output.GetComponent<Text>().text = _currentInput;
 		if (State.horse.Length == 5 || OpponentControls.State.horse.Length == 5) {
-            WinnerScreen.SetActive(true);
-        } else {
+			WinnerScreen.SetActive(true);
+			_elapsedOffTime += Time.deltaTime;
+			if (_elapsedOffTime >= RestartAfterElapsedTime)
+			{
+				Reset();
+				RestartGame();
+				State.clearState();
+				WinnerScreen.SetActive(false);
+			}
+		} else {
 			if (Input.GetKey(InputKey))
 			{
 				_pressed = true;
 				_elapsedHoldTime += Time.deltaTime;
 				_expectedInput = GetExpectedInput(_elapsedHoldTime);
-				_elapsedOffTime = 0f;
 			}
 			else if (_pressed == true)
 			{
 				_pressed = false;
-				_elapsedOffTime += Time.deltaTime;
 				_elapsedHoldTime = 0f;
 				if (ExpectedInput == '_' || ExpectedInput == '.')
 					_currentInput += _expectedInput;
@@ -151,12 +163,12 @@ public class Controls : MonoBehaviour
 
                         if (State.strikes == 3) {
                             State.horse += "_";
-                            Neigh.Play();
+                            Neigh.PlayNoise();
                             Reset();
                             OpponentControls.Reset();
                             WordGod.GetNewWord();
                         } else {
-                            Strike.Play();
+                            Strike.PlayNoise();
                         }
 					}
                 }
@@ -178,7 +190,7 @@ public class Controls : MonoBehaviour
 				else
 				{
                     OpponentControls.State.horse += "_";
-                        Neigh.Play();
+                        Neigh.PlayNoise();
                     // The word is complete.
 //                    InputDisabled = true;
                     Reset();
