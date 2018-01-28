@@ -15,18 +15,18 @@ public class BamScript : MonoBehaviour
 
 	private bool isDown = false;
 
-    // Use this for initialization
-    void Start () {
+	// Use this for initialization
+	void Start () {
         animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Nothing"))
-        {
-            if (Input.GetAxis(AxisName) != 0f && !isDown)
-            {
+	{
+		if (animator.GetCurrentAnimatorStateInfo(0).IsName("Nothing"))
+		{
+			if (Input.GetAxis(AxisName) != 0f && !isDown)
+			{
 				isDown = true;
 				animator.SetTrigger("Whatever");
 				GetComponent<AudioSource>().PlayOneShot(Clips[Random.Range(0, Clips.Length - 1)]);

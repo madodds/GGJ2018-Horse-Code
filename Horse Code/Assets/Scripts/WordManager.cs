@@ -8,8 +8,7 @@ public class WordManager : MonoBehaviour {
 	public delegate void ClickAction();
 	public static event ClickAction NewWord;
 
-	public GameObject WordOutputText0;
-    public GameObject WordOutputText1;
+	public Text[] WordOutputText;
 
     public static readonly Dictionary<char, string> MorseCodeKey = new Dictionary<char, string>() {
 		{'a', "._"},
@@ -61,6 +60,9 @@ public class WordManager : MonoBehaviour {
 	private List<CoolWord> _unusedWordList;
 	private List<CoolWord> _wordList = new List<CoolWord>()
 	{
+		new CoolWord("SOS", ""),
+		new CoolWord("SOS", ""),
+		new CoolWord("SOS", ""),
 		new CoolWord("Able", ""),
 		new CoolWord("Also", ""),
 		new CoolWord("Away", ""),
@@ -437,6 +439,7 @@ public class WordManager : MonoBehaviour {
 		new CoolWord("Xylophone", ""),
 
 		new CoolWord("Yegorlykskaya", "population: 17,660"),
+		new CoolWord("hippopotomonstrosesquippedaliophobia", "Did you know the hippopotamus is also known as a water horse?!")
 
 
 	};
@@ -468,8 +471,9 @@ public class WordManager : MonoBehaviour {
 		CoolWord word = _unusedWordList[index];
 		_unusedWordList.RemoveAt(index);
 		_currentWord = word;
-		WordOutputText0.GetComponent<Text>().text = _currentWord.Word;
-        WordOutputText1.GetComponent<Text>().text = _currentWord.Word;
+
+        for (int i=0;i<WordOutputText.Length;i++)
+    		WordOutputText[i].text = _currentWord.Word;
 
         if (NewWord != null)
 			NewWord();

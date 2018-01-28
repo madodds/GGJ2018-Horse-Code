@@ -21,11 +21,13 @@ public class Horse1Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            if (Input.GetAxis(AxisName) != 0f)
-            {
-                animator.SetBool("Button", true);
-            }
-            else     
-                animator.SetBool("Button", false);        
+		if (Input.GetAxis(AxisName) != 0f)
+		{
+			animator.SetBool("Button", true);
+		}
+		else
+		{
+			animator.SetBool("Button", false);
+		}
     }
 }

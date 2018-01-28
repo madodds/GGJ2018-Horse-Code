@@ -13,8 +13,6 @@ public class Controls : MonoBehaviour
 	/// </summary>
 	public string AxisName;
 
-	//public 
-
 	public WordManager WordGod;
 
 	public PlayerState State = new PlayerState();
@@ -32,6 +30,7 @@ public class Controls : MonoBehaviour
     public GameObject WinnerScreen;
 	public GameObject LoserScreen;
 
+    public IntermissionHandler IntermissionGod;
 
 	public delegate void ResetGame();
 	public static event ResetGame RestartGame;
@@ -116,7 +115,6 @@ public class Controls : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		
 		ExpectedOutput.GetComponent<Text>().text = _expectedInput.ToString();
 		Output.GetComponent<Text>().text = _currentInput;
 		if (State.horse.Length == 5 || OpponentControls.State.horse.Length == 5) {
@@ -140,6 +138,7 @@ public class Controls : MonoBehaviour
 				LoserScreen.SetActive(false);
 			}
 		} else {
+		    WinnerScreen.SetActive(false);
 			if (Input.GetAxis(AxisName) != 0f)
 			{
 				_pressed = true;
@@ -177,6 +176,11 @@ public class Controls : MonoBehaviour
                             Reset();
                             OpponentControls.Reset();
                             WordGod.GetNewWord();
+
+                            if (State.horse.Length != 5) {
+                                OpponentControls.WinnerScreen.SetActive(true);
+                                IntermissionGod.Pause();
+                            }
                         } else {
                             Strike.PlayNoise();
                         }
@@ -206,6 +210,10 @@ public class Controls : MonoBehaviour
                     OpponentControls.Reset();
                     WordGod.GetNewWord();
 
+                    if (OpponentControls.State.horse.Length != 5) {
+                        WinnerScreen.SetActive(true);
+                        IntermissionGod.Pause();
+                    }
                 }
 			}
 		}
