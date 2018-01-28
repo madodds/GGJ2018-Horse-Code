@@ -9,6 +9,7 @@ public class WordManager : MonoBehaviour {
 	public static event ClickAction NewWord;
 
 	public Text[] WordOutputText;
+	public Text TriviaTextOutput;
 
     public static readonly Dictionary<char, string> MorseCodeKey = new Dictionary<char, string>() {
 		{'a', "._"},
@@ -134,7 +135,7 @@ public class WordManager : MonoBehaviour {
 		new CoolWord("Zone", ""),
 
 		new CoolWord("Acute", ""),
-		new CoolWord("Armor", "Check out our horse armor DLC!"),
+		new CoolWord("Armor", "Horse armor DLC coming soon"),
 		new CoolWord("Avoid", ""),
 		new CoolWord("Basic", ""),
 		new CoolWord("Break", ""),
@@ -268,6 +269,7 @@ public class WordManager : MonoBehaviour {
 		new CoolWord("Binding", ""),
 		new CoolWord("Captain", ""),
 		new CoolWord("Chronic", ""),
+		new CoolWord("Content", "Horse armor DLC coming soon"),
 		new CoolWord("Culture", ""),
 		new CoolWord("Deficit", ""),
 		new CoolWord("Devoted", ""),
@@ -339,6 +341,7 @@ public class WordManager : MonoBehaviour {
 		new CoolWord("Coconuts", "A common horse substitute"),
 		new CoolWord("Database", ""),
 		new CoolWord("Document", ""),
+		new CoolWord("Download", "Horse armor DLC coming soon"),
 		new CoolWord("Dramatic", ""),
 		new CoolWord("Efficacy", ""),
 		new CoolWord("Electric", ""),
@@ -474,8 +477,10 @@ public class WordManager : MonoBehaviour {
 
         for (int i=0;i<WordOutputText.Length;i++)
     		WordOutputText[i].text = _currentWord.Word;
+		TriviaTextOutput.text = _currentWord.Trivia;
 
-        if (NewWord != null)
+
+		if (NewWord != null)
 			NewWord();
 	}
 

@@ -15,7 +15,12 @@ public class IntermissionHandler : MonoBehaviour
     private bool _paused;
     private float _elapsedOffTime;
 
-    public void Pause()
+	private void Start()
+	{
+		Pause();
+	}
+
+	public void Pause()
     {
         IntermissionScreen.SetActive(true);
         GameScreen.SetActive(false);
@@ -27,7 +32,7 @@ public class IntermissionHandler : MonoBehaviour
     {
         if (_paused)
         {
-            Countdown.text = ((int)(PauseTime - _elapsedOffTime)).ToString();
+            Countdown.text = ((int) (PauseTime - _elapsedOffTime) + 1).ToString();
             _elapsedOffTime += Time.deltaTime;
             if (_elapsedOffTime >= PauseTime)
             {

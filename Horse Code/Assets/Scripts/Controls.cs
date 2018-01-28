@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class Controls : MonoBehaviour
 {
+	private static bool WinPause = false;
 	/// <summary>
 	/// The length in seconds for how long a tick/dot takes to register.
 	/// </summary>
@@ -118,6 +119,8 @@ public class Controls : MonoBehaviour
 		ExpectedOutput.GetComponent<Text>().text = _expectedInput.ToString();
 		Output.GetComponent<Text>().text = _currentInput;
 		if (State.horse.Length == 5 || OpponentControls.State.horse.Length == 5) {
+			_currentWord = "";
+
 			if (OpponentControls.State.horse.Length == 5)
 			{
 				WinnerScreen.SetActive(true);
@@ -134,8 +137,21 @@ public class Controls : MonoBehaviour
 				Reset();
 				RestartGame();
 				State.clearState();
+
 				WinnerScreen.SetActive(false);
 				LoserScreen.SetActive(false);
+				OpponentControls.WinnerScreen.SetActive(false);
+				OpponentControls.LoserScreen.SetActive(false);
+
+				if (!WinPause)
+				{
+					WinPause = true;
+				}
+				else
+				{
+					IntermissionGod.Pause();
+					WinPause = false;
+				}
 			}
 		} else {
 		    WinnerScreen.SetActive(false);
