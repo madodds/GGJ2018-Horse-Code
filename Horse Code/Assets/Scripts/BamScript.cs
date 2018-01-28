@@ -6,7 +6,9 @@ public class BamScript : MonoBehaviour
 {
 	public KeyCode InputKey;
 
-    private Animator animator;
+	public AudioClip[] Clips;
+
+	private Animator animator;
 
     // Use this for initialization
     void Start () {
@@ -21,8 +23,9 @@ public class BamScript : MonoBehaviour
             if (Input.GetKeyDown(InputKey))
             {
                 animator.SetTrigger("Whatever");
-            }
-                //animator.SetTrigger("Whatever");
-        }
+				GetComponent<AudioSource>().PlayOneShot(Clips[Random.Range(0, Clips.Length - 1)]);
+			}
+			//animator.SetTrigger("Whatever");
+		}
     }
 }
