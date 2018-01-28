@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class BamScript : MonoBehaviour
 {
-	public KeyCode InputKey;
+	/// <summary>
+	/// The key on your keyboard for inputting your Morse code.
+	/// </summary>
+	public string AxisName;
 
 	public AudioClip[] Clips;
 
 	private Animator animator;
+
+	private bool isDown = false;
 
     // Use this for initialization
     void Start () {
@@ -20,10 +25,15 @@ public class BamScript : MonoBehaviour
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Nothing"))
         {
-            if (Input.GetKeyDown(InputKey))
+            if (Input.GetAxis(AxisName) != 0f && !isDown)
             {
-                animator.SetTrigger("Whatever");
+				isDown = true;
+				animator.SetTrigger("Whatever");
 				GetComponent<AudioSource>().PlayOneShot(Clips[Random.Range(0, Clips.Length - 1)]);
+			}
+			else if (Input.GetAxis(AxisName) == 0f)
+			{
+				isDown = false;
 			}
 			//animator.SetTrigger("Whatever");
 		}

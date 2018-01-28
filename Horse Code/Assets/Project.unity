@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682f4a740f2e22841a8f88da2250d3c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InputKey: 97
+  AxisName: Player1
   Clips:
   - {fileID: 8300000, guid: d8862d48bb84fcd46bcc390226bafa19, type: 3}
   - {fileID: 8300000, guid: a6fb002ac4f665d4db05ae59f71d8edf, type: 3}
@@ -795,7 +795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682f4a740f2e22841a8f88da2250d3c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InputKey: 108
+  AxisName: Player2
   Clips:
   - {fileID: 8300000, guid: d8862d48bb84fcd46bcc390226bafa19, type: 3}
   - {fileID: 8300000, guid: a6fb002ac4f665d4db05ae59f71d8edf, type: 3}
@@ -2005,7 +2005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4673127b4377a8a40b8165b06882ba59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InputKey: 108
+  AxisName: Player2
 --- !u!1 &762020397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3231,7 +3231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickLength: 0.15
-  InputKey: 108
+  AxisName: Player2
   WordGod: {fileID: 762020398}
   UI: {fileID: 1502594406}
   OpponentControls: {fileID: 1475262401}
@@ -3901,7 +3901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4673127b4377a8a40b8165b06882ba59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InputKey: 97
+  AxisName: Player1
 --- !u!95 &1207218446
 Animator:
   serializedVersion: 3
@@ -4587,7 +4587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickLength: 0.15
-  InputKey: 97
+  AxisName: Player1
   WordGod: {fileID: 762020398}
   UI: {fileID: 489619743}
   OpponentControls: {fileID: 965751684}

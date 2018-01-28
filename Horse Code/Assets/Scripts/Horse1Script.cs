@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Horse1Script : MonoBehaviour
 {
-	public KeyCode InputKey;
+	/// <summary>
+	/// The key on your keyboard for inputting your Morse code.
+	/// </summary>
+	public string AxisName;
 
 	private Animator animator;
 
@@ -18,7 +21,7 @@ public class Horse1Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            if (Input.GetKey(InputKey))
+            if (Input.GetAxis(AxisName) != 0f)
             {
                 animator.SetBool("Button", true);
             }

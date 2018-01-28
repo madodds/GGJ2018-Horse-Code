@@ -11,7 +11,9 @@ public class Controls : MonoBehaviour
 	/// <summary>
 	/// The key on your keyboard for inputting your Morse code.
 	/// </summary>
-	public KeyCode InputKey;
+	public string AxisName;
+
+	//public 
 
 	public WordManager WordGod;
 
@@ -114,6 +116,7 @@ public class Controls : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		
 		ExpectedOutput.GetComponent<Text>().text = _expectedInput.ToString();
 		Output.GetComponent<Text>().text = _currentInput;
 		if (State.horse.Length == 5 || OpponentControls.State.horse.Length == 5) {
@@ -137,7 +140,7 @@ public class Controls : MonoBehaviour
 				LoserScreen.SetActive(false);
 			}
 		} else {
-			if (Input.GetKey(InputKey))
+			if (Input.GetAxis(AxisName) != 0f)
 			{
 				_pressed = true;
 				_elapsedHoldTime += Time.deltaTime;
