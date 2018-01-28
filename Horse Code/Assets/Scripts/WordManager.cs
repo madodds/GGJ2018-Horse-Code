@@ -475,16 +475,6 @@ public class WordManager : MonoBehaviour {
 			NewWord();
 	}
 
-	public string GetTranslation(string word)
-	{
-		string output = "";
-		foreach(char character in word)
-		{
-			output += MorseCodeKey[character];
-		}
-		return output;
-	}
-
 	public class CoolWord
 	{
 		public CoolWord(string word, string trivia)

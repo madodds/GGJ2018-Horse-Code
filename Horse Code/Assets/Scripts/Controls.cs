@@ -65,8 +65,6 @@ public class Controls : MonoBehaviour
 
 	private float _elapsedHoldTime;
 	private float _elapsedOffTime;
-	private float _barLength;
-	private float _errorTolorance;
 
 	/// <summary>
 	/// The current word to solve for.
@@ -109,8 +107,6 @@ public class Controls : MonoBehaviour
         _displayInput = "";
         _elapsedOffTime = 0f;
 		_elapsedHoldTime = 0f;
-		_barLength = TickLength * 3;
-		_errorTolorance = TickLength * 1f;
 		_currentCharacterIndex = 0;
 	}
 
@@ -120,7 +116,10 @@ public class Controls : MonoBehaviour
 		ExpectedOutput.GetComponent<Text>().text = _expectedInput.ToString();
 		Output.GetComponent<Text>().text = _currentInput;
 		if (State.horse.Length == 5 || OpponentControls.State.horse.Length == 5) {
-			WinnerScreen.SetActive(true);
+			if (OpponentControls.State.horse.Length == 5)
+			{
+				WinnerScreen.SetActive(true);
+			}
 			_elapsedOffTime += Time.deltaTime;
 			if (_elapsedOffTime >= RestartAfterElapsedTime)
 			{
@@ -189,10 +188,9 @@ public class Controls : MonoBehaviour
 				}
 				else
 				{
-                    OpponentControls.State.horse += "_";
-                        Neigh.PlayNoise();
-                    // The word is complete.
-//                    InputDisabled = true;
+					// The word is complete.
+					OpponentControls.State.horse += "_";
+                    Neigh.PlayNoise();
                     Reset();
                     OpponentControls.Reset();
                     WordGod.GetNewWord();
@@ -220,7 +218,7 @@ public class Controls : MonoBehaviour
 	private void MyEvent()
 	{
 		_currentWord = WordGod.CurrentWord.Word.ToLower();
-		Debug.Log(string.Format("_currenstWord: {0}", _currentWord));
+		//Debug.Log(string.Format("_currentWord: {0}", _currentWord));
 		_currentCharacterIndex = 0;
 		ResetCharacterProgress(_currentCharacterIndex);
 	}
