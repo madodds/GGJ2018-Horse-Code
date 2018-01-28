@@ -28,6 +28,7 @@ public class Controls : MonoBehaviour
 	public GameObject ExpectedOutput;
 	public GameObject Output;
     public GameObject WinnerScreen;
+	public GameObject LoserScreen;
 
 
 	public delegate void ResetGame();
@@ -119,6 +120,12 @@ public class Controls : MonoBehaviour
 			if (OpponentControls.State.horse.Length == 5)
 			{
 				WinnerScreen.SetActive(true);
+				LoserScreen.SetActive(false);
+			}
+			else if (State.horse.Length == 5)
+			{
+				LoserScreen.SetActive(true);
+				WinnerScreen.SetActive(false);
 			}
 			_elapsedOffTime += Time.deltaTime;
 			if (_elapsedOffTime >= RestartAfterElapsedTime)
@@ -127,6 +134,7 @@ public class Controls : MonoBehaviour
 				RestartGame();
 				State.clearState();
 				WinnerScreen.SetActive(false);
+				LoserScreen.SetActive(false);
 			}
 		} else {
 			if (Input.GetKey(InputKey))
